@@ -680,10 +680,10 @@ end)
             local Main = Window:NewTab("Main")
             local MainSection = Main:NewSection("Main")
             
-            MainSection:NewButton("CMD X", "gives you a cmd list", function()
+            MainSection:NewButton("CMD X", "best commands", function()
                       loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
                 end)
-                MainSection:NewButton("CMD X", "gives you a cmd list", function()
+                MainSection:NewButton("Test Button", "testing stuff", function(v)
             
             end)
 

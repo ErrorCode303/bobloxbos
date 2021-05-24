@@ -683,7 +683,7 @@ end)
             MainSection:NewButton("CMD X", "best commands", function()
                       loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
                 end)
-                MainSection:NewButton("Test Button", "testing stuff", function(v)
+                MainSection:NewButton("Test Buttn", "testing stuff", function(v)
             
             end)
 

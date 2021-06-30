@@ -638,58 +638,41 @@ end)
 
     end)
     
-elseif game.PlaceId == 5977280685 then  
+    
+elseif game.PlaceId == 5977280685 then
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
         local Window = Library.CreateLib("BatHub | Ninja Legends 2", "Ocean")
         local Main = Window:NewTab("Main")
         local MainSection = Main:NewSection("Main")
         MainSection:NewToggle("AutoSwing (SEMI WORKS)", "autoswings for you", function(v)
-            getgenv().autoswing = v 
-            while true do
-                for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:FindFirstChild("ninjitsuGain") then
-                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                        break
-                    end
-                end
-                if not getgenv().autoswing then return end
-                local args = {
-                    [1] = "swingBlade",
-                }
-                game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
-                wait(0.1)
+            swing = v
+while swing do wait()
+local args = {
+    [1] = "swingBlade"
+}
+
+game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
             end
         end)
-        MainSection:NewToggle("AutoSells (NO WORK)", "autosells for you", function(v)
-            getgenv().autosell = v
-            while true do
-                if getgenv().autoswing == false then return end
-                game:GetService("Workspace").sellTeleportPart.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                wait(0.1)
-                game:GetService("Workspace").sellTeleportPart.circleInner.CFrame = CFrame.new(0,0,0)
-                wait(0.1)
+        MainSection:NewToggle("AutoSell", "autosells for you", function(v)
+            Sell = v
+            while Sell do wait()
+            for _,v in pairs(game:GetService("Workspace").sellAreaCircles:GetDescendants()) do
+            if v:IsA("TouchTransmitter") then
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+            wait()
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
             end
-        end)
+            end
+            end
+            end)
+                
 
-     elseif game.PlaceId == 4520749081 then
-            -- TELEPORT BYPASS
-if game:GetService("Players").LocalPlayer.Character.Services:FindFirstChild("Client") then
-    game:GetService("Players").LocalPlayer.Character.Services["Client"].Disabled = true
-end
-
--- VARIABLES
-local mobs = {} -- MOBS TABLE
-getgenv().mob = nil -- SELECTED MOB
-
--- MOBS
-for _,v in pairs(game:GetService("Workspace").Monster.Mon:GetChildren()) do -- LOOPS THROUGH ALL MOBS
-    insert = true -- VALUE TO CHECK THE MOB
-    for _,v2 in pairs(mobs) do if v2 == v.Name then insert = false end end -- CHECKS IF MOB IS ALREADY IN THE TABLE
-    if insert then table.insert(mobs, v.Name) end -- IF THE MOB ISNT INSERTED THEN INSERT IT
-end
+    
+            
 
 -- UI LIBRARY
-
+elseif game.PlaceId == 4520749081 then  
 local Library = loadstring(game:HttpGet("https:/raw.githubusercontent.com/Attrixx/Scandia/main/KavoUiLib.lua"))() -- GETS THE UI LIBRARY
 local Window = Library.CreateLib("BatHub | King Legends", "Ocean") -- CREATES THE WINDOW
 
@@ -771,10 +754,152 @@ game:GetService("Workspace").Monster.Mon.ChildRemoved:Connect(function() -- WHEN
     end
     mobdropdown:Refresh(mobs)
 end)
-end
-        
-          
+elseif game.PlaceId == 3101667897 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("BatHub | Legend of Speed", "Ocean")
+    --MAIN
+     local Main = Window:NewTab("Main")
+     local MainSection = Main:NewSection("Main") 
+     MainSection:NewButton("Mega AutoFarm", "Fast AutoFarm", function()
+         --AUTOFARM
+        game:GetService('RunService').RenderStepped:connect(function()
+            for i=1, math.huge do
+            while wait() do
             
+            wait()
+            
+            local A_1 = "rebirthRequest"
+            local Event = game:GetService("ReplicatedStorage").rEvents.rebirthEvent
+            Event:FireServer(A_1)
+            
+            local tbl_main =
+            {
+                 "collectOrb",
+                 "Orange Orb",
+                 "City"
+            }
+            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+            
+            local shroud = game.Workspace.Hoops
+            local plr = game.Players.LocalPlayer.Character.HumanoidRootPart
+            for i,v in pairs(shroud:GetChildren()) do
+              if v.Name == 'Hoop' then
+            v.CFrame = plr.CFrame    
+            
+            end
+            end
+            spawn(function()
+                while wait() do
+                    game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+                end
+            end)
+            spawn(function()
+            while wait() do
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Orange Orb", "City")
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+            end end)
+            end end end)
+            end)
+         --PLAYERS
+    local Player = Window:NewTab("Player")
+    local PlayerSection = Player:NewSection("Player")
+    PlayerSection:NewSlider("Walkspeed", "Changes your walkspeed", 350, 16, function(v) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    local PlayerSection = Player:NewSection("Player")
+    PlayerSection:NewSlider("Jumppower", "Changes your Jumppower", 350, 50, function(v) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)            
+            elseif game.PlaceId == 189707 then
+            local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+            local Window = Library.CreateLib("BatHub | Natural Disaster Survival", "Ocean")
+            --MAIN
+             local Main = Window:NewTab("Main")
+            local MainSection = Main:NewSection("Main")
+            MainSection:NewSlider("Walkspeed", "LocalPlayers Walkspeed", 500, 40, function(Val) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Val end)
+            MainSection:NewSlider("JumpPower", "LocalPlayers Jump height", 500, 40, function(Val) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Val end)
+            MainSection:NewButton("Btools", "LocalPlayer Toolbox", function(v) 
+            game.StarterGui:SetCoreGuiEnabled(2, true)
+            a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            a.BinType = 2
+            b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            b.BinType = 3
+            c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            c.BinType = 4 end)
+            MainSection:NewButton("Noclip (Press F)", "Walk Through Walls", function(key)
+                noclip = false
+                game:GetService('RunService').Stepped:connect(function()
+                if noclip then
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
+                end)
+                plr = game.Players.LocalPlayer
+                mouse = plr:GetMouse()
+                mouse.KeyDown:connect(function(key)
+                
+                if key == "f" then
+                noclip = not noclip
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
+                end) end)
+
+                local Teleports = Window:NewTab("Teleport")
+                local TeleportsSection = Teleports:NewSection("Teleport")
+            TeleportsSection:NewButton("random player", "TPS you to a random player", function(v)
+
+            local randomPlayer = game.Players:GetPlayers()
+            [math.random(1,#game.Players:GetPlayers())]
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(randomPlayer.Character.Head.Position.X, randomPlayer.Character.Head.Position.Y, randomPlayer.Character.Head.Position.Z)) end)
+            TeleportsSection:NewButton("Lobby", "Tps you to the lobby", function(v)
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-241.711945, 179.598007, 299.103973)
+            end)
+            TeleportsSection:NewButton("MainMap", "Tps you to the Main Map", function(v)
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.340561, 47.3980064, 1.86407304)
+                end)
+            elseif game.PlaceId == 370731277 then
+                local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+                local Window = Library.CreateLib("BatHub | MeepCity", "Ocean")
+                --MAIN
+                local Main = Window:NewTab("Main")
+                local MainSection = Main:NewSection("Main")
+                
+                MainSection:NewButton("AutoFarm", "Get ya Bread up", function()
+                    game.ReplicatedStorage.Connection:InvokeServer(9, 1)
+                game:GetService("RunService").RenderStepped:Connect(function()
+                game.ReplicatedStorage.Connection:InvokeServer(49)
+                game.ReplicatedStorage.Connection:InvokeServer(50)
+                game.ReplicatedStorage.Connection:InvokeServer(51)
+                local dekus = 11
+                local ohshit = {
+                    ["FishingPolePos"] = game:GetService("Workspace").TempFish.Position,
+                    ["Power"] = 1,
+                    ["Face"] = game:GetService("Workspace").TempFish.Position,
+                    ["PlayerPos"] = game:GetService("Workspace").TempFish.Position,
+                    ["FishingZonePos"] = Vector3.new(-5.29345703, -18.0412292, 43.7173767)
+                }
+                game:GetService("ReplicatedStorage").Connection:InvokeServer(dekus, ohshit)
+                end) end)
+                
+                MainSection:NewButton("Gamepasses", "Get all Gamepasses Free", function()
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].BoomBox.Value = true
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].PLUS.Value = true
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].ChalkPass.Value = true
+                end)
+                MainSection:NewButton("Lag Switch F3", "Makes you lag", function()
+
+                    local a = false
+                    local b = settings()
+                    
+                    game:service'UserInputService'.InputEnded:connect(function(i)
+                    if i.KeyCode == Enum.KeyCode.F3 then
+                    a = not a
+                    b.Network.IncomingReplicationLag = a and 10 or 0
+                    end
+                    end) end) 
+            end
 
             
 
